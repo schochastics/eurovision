@@ -2,6 +2,7 @@ library(tidyverse)
 library(ggmap)
 library(ggthemes)
 library(ggraph)
+
 #read data -----
 df <- tibble()
 for(y in 1958:2016){
@@ -17,7 +18,6 @@ df <- df %>% mutate(points=ifelse(is.na(points),0,points),
                     country=ifelse(country=="Bosnia & Herzegovina","Bosnia and Herzegovina",country))
  
 # max voting graph ----
-
 g <- df %>% group_by(voter,year) %>% 
   dplyr::filter(points==max(points)) %>% 
   ungroup() %>% 
@@ -49,7 +49,7 @@ df %>% group_by(country,year) %>%
   dplyr::filter(year==2016) %>% 
   arrange(-total)
 
-# maps ----
+# map ----
 map<-map_data("world")
 map <- map %>% semi_join(df,by=c("region"="country"))
 map <- map %>% left_join(data.frame(region=groups$names,clust=factor(groups$membership)))
