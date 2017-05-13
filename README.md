@@ -1,2 +1,3 @@
-# eurovision
-Some Analyses of the Eurovision Song Contest
+# Introduction 
+This repo contains some R scripts to scrape and analyse scoreboards from the ESC.
+
